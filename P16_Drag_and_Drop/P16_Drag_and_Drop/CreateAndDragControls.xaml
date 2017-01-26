@@ -1,0 +1,48 @@
+﻿<Window x:Class="P16_Drag_and_Drop.CreateAndDragControls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P16_Drag_and_Drop"
+        mc:Ignorable="d"
+        Title="CreateAndDragControls"
+        Height="350"
+        Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel x:Name="toolbox"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Background="Azure">
+            <Button x:Name="btn_label" Margin="5" Click="btn_label_Click">Beschriftungsfeld</Button>
+            <Button x:Name="btn_textbox" Margin="5" Click="btn_textbox_Click">Textfeld</Button>
+            <Button x:Name="btn_abort" Margin="5" Click="btn_abort_Click">Abbrechen</Button>
+        </WrapPanel>
+
+        <!--Important! The background of this panel has to be "Transparent" so that drag'n'drop-events can work.
+            Otherwise the events are not fired.-->
+        <Canvas x:Name="designerpanel"
+                Grid.Row="1"
+                Grid.Column="0"
+                AllowDrop="True"
+                MouseEnter="designerpanel_MouseEnter"
+                MouseLeave="designerpanel_MouseLeave"
+                MouseDown="designerpanel_MouseDown"
+                MouseMove="designerpanel_MouseMove">
+            <Canvas.Background>
+                <ImageBrush ImageSource="pictures/CanvasBackground.png"
+                            TileMode="Tile"
+                            Stretch="None"
+                            Viewport="0, 0, 10, 10"
+                            ViewportUnits="Absolute" />
+            </Canvas.Background>
+        </Canvas>
+    </Grid>
+</Window>
