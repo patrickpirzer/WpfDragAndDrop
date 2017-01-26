@@ -30,10 +30,10 @@ namespace P16_Drag_and_Drop.ViewModels
         /// </summary>
         private Window designerwindow;
 
-        /// <summary>
-        /// Field for an object of the <see cref="DragElementActions"/> class.
-        /// </summary>
-        private DragElementActions dragElementActions;
+        /////// <summary>
+        /////// Field for an object of the <see cref="DragElementActions"/> class.
+        /////// </summary>
+        ////private DragElementActions dragElementActions;
 
         /// <summary>
         /// Field for an object of the <see cref="DragAndResizeElementActions"/> class.
@@ -48,15 +48,16 @@ namespace P16_Drag_and_Drop.ViewModels
         /// <summary>
         /// The constructor.
         /// </summary>
-        /// <param name="panelForMaskDesign"></param>
-        /// <param name="windowForMaskDesign"></param>
+        /// <param name="panelForMaskDesign">The panel for designing a mask.</param>
+        /// <param name="windowForMaskDesign">The window for designing a mask.</param>
         public CreateAndDragControlsViewModel(Canvas panelForMaskDesign, Window windowForMaskDesign)
         {
             designerpanel = panelForMaskDesign;
             designerwindow = windowForMaskDesign;
 
             // First version for dragging elements.
-            dragElementActions = new DragElementActions();
+            ////dragElementActions = new DragElementActions();
+
             // Second alternative version for dragging and resizing elements.
             dragAndResizeElementActions = new DragAndResizeElementActions(designerwindow);
 
@@ -155,6 +156,7 @@ namespace P16_Drag_and_Drop.ViewModels
                 newControl.PreviewMouseLeftButtonDown += dragAndResizeElementActions.OnElementMouseDown;
                 newControl.PreviewMouseMove += dragAndResizeElementActions.OnElementMouseMove;
                 newControl.PreviewMouseLeftButtonUp += dragAndResizeElementActions.OnMouseUp;
+                newControl.MouseEnter += dragAndResizeElementActions.OnMouseEnter;
                 newControl.MouseLeave += dragAndResizeElementActions.OnMouseLeave;
 
                 // Creates the context menu and adds it to the new control.

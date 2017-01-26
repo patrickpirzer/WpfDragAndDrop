@@ -9,8 +9,10 @@ using System.Windows.Input;
 
 namespace P16_Drag_and_Drop
 {
+    [Obsolete]
     /// <summary>
     /// Class for dragging existing elements inside a panel.
+    /// This class is not used anymore.
     /// </summary>
     public class DragElementActions
     {

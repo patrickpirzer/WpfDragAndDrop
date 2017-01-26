@@ -29,6 +29,9 @@ namespace P16_Drag_and_Drop
             {
                 newControl = new Label();
                 newControl.GetType().GetProperty("Content").SetValue(newControl, "Label");
+                newControl.GetType().GetProperty("Background").SetValue(newControl, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.AliceBlue));
+                newControl.GetType().GetProperty("Width").SetValue(newControl, double.NaN);
+                Label lbl = new Label();
             }
             else if (element.GetType() == typeof(TextBox))
             {

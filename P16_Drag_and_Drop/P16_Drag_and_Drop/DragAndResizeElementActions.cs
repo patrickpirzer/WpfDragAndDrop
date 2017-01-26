@@ -9,6 +9,9 @@ using System.Windows.Input;
 
 namespace P16_Drag_and_Drop
 {
+    /// <summary>
+    /// Class for changing the position and size of elements by drag-and-resize.
+    /// </summary>
     public class DragAndResizeElementActions
     {
         /// <summary>
@@ -94,14 +97,10 @@ namespace P16_Drag_and_Drop
         }
 
         /// <summary>
-        /// While the Drag&Drop-operation the element is either moved or resized. 
+        /// While the drag-and-resize operation the element is either moved or resized. 
         /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The eventarguments.
-        /// </param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The eventarguments.</param>
         public void OnElementMouseMove(object sender, MouseEventArgs e)
         {
             // Converts the sender to type FrameworkElement.
@@ -163,7 +162,7 @@ namespace P16_Drag_and_Drop
                         break;
                 }
 
-                // Don't use negative width or height.
+                // Avoids negative width or height.
                 if (newWidth > (GAP * 2) && newHeight > (GAP * 2))
                 {
                     // Updates the element.
@@ -185,14 +184,10 @@ namespace P16_Drag_and_Drop
         }
 
         /// <summary>
-        /// Stops the Drag&Drop-operation and reset the mouse cursor.
+        /// Stops the drag-and-resize operation and resets the mouse cursor.
         /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The eventarguments.
-        /// </param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The eventarguments.</param>
         public void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             // Dragging is finished and the default mouse cursor restored.
@@ -212,14 +207,21 @@ namespace P16_Drag_and_Drop
         }
 
         /// <summary>
-        /// Stops the Drag&Drop-operation and resets the mouse cursor.
+        /// Reminds the mouse cursor layout when entering an element on the designer mask.
+        /// While the MouseLeave-event the cursor will be restored.
         /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The eventarguments.
-        /// </param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The eventarguments.</param>
+        public void OnMouseEnter(object sender, MouseEventArgs e)
+        {
+            defaultCursor = designerwindow.Cursor;
+        }
+
+        /// <summary>
+        /// Stops the darg-and-resize operation and resets the mouse cursor.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The eventarguments.</param>
         public void OnMouseLeave(object sender, MouseEventArgs e)
         {
             // Dragging is finished and the default mouse cursor restored.
@@ -230,12 +232,8 @@ namespace P16_Drag_and_Drop
         /// <summary>
         /// Returns a HitType value to indicate what is at the point.
         /// </summary>
-        /// <param name="element">
-        /// The element.
-        /// </param>
-        /// <param name="mousePosition">
-        /// The actual mouse-position on the canvas.
-        /// </param>
+        /// <param name="element">The element.</param>
+        /// <param name="mousePosition">The actual mouse-position on the canvas.</param>
         /// <returns>
         /// Returns an object of type HitType.
         /// </returns>
@@ -311,9 +309,14 @@ namespace P16_Drag_and_Drop
             }
 
             // Displays the desired cursor.
-            if (designerwindow.Cursor != desiredCursor)
+            //if (designerwindow.Cursor != desiredCursor)
+            //{
+            //    designerwindow.Cursor = desiredCursor;
+            //}
+            if (element.GetType().GetProperty("Cursor") != null &&
+                (Cursor)element.GetType().GetProperty("Cursor").GetValue(element) != desiredCursor)
             {
-                designerwindow.Cursor = desiredCursor;
+                element.GetType().GetProperty("Cursor").SetValue(element, desiredCursor);
             }
         }
 
