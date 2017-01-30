@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using P16_Common;
+using P16_CustomControlLibrary;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -70,7 +68,7 @@ namespace P16_Drag_and_Drop.ViewModels
         public void StartAddingLabel()
         {
             myControl = new Label();
-            designerwindow.Cursor = Cursors.No;
+            CommonMethods.DisplayCursor(designerwindow, Cursors.No);
         }
 
         /// <summary>
@@ -79,7 +77,16 @@ namespace P16_Drag_and_Drop.ViewModels
         public void StartAddingTextbox()
         {
             myControl = new TextBox();
-            designerwindow.Cursor = Cursors.No;
+            CommonMethods.DisplayCursor(designerwindow, Cursors.No);
+        }
+
+        /// <summary>
+        /// Starts the adding of a new CustomTextBox control.
+        /// </summary>
+        public void StartAddingCustomTextBox()
+        {
+            myControl = new CustomTextBox();
+            CommonMethods.DisplayCursor(designerwindow, Cursors.No);
         }
 
         /// <summary>
@@ -88,7 +95,7 @@ namespace P16_Drag_and_Drop.ViewModels
         public void AbortAddingAction()
         {
             myControl = null;
-            designerwindow.Cursor = Cursors.Arrow;
+            CommonMethods.DisplayCursor(designerwindow, Cursors.Arrow);
         }
 
         /// <summary>
@@ -102,7 +109,7 @@ namespace P16_Drag_and_Drop.ViewModels
             }
 
             // If myControl is set the cursor has to become a cross.
-            designerwindow.Cursor = Cursors.Cross;
+            CommonMethods.DisplayCursor(designerwindow, Cursors.Cross);
         }
 
         /// <summary>
@@ -116,7 +123,7 @@ namespace P16_Drag_and_Drop.ViewModels
             }
 
             // If myControl is set the cursor has to become the forbidden sign.
-            designerwindow.Cursor = Cursors.No;
+            CommonMethods.DisplayCursor(designerwindow, Cursors.No);
         }
 
         /// <summary>
@@ -167,7 +174,7 @@ namespace P16_Drag_and_Drop.ViewModels
             }
 
             myControl = null;
-            designerwindow.Cursor = Cursors.Arrow;
+            CommonMethods.DisplayCursor(designerwindow, Cursors.Arrow);
         }
 
     }

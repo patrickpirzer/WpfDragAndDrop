@@ -57,6 +57,16 @@ namespace P16_Drag_and_Drop
         }
 
         /// <summary>
+        /// Starts the adding of a new CustomTextBox control.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_customtextbox_Click(object sender, RoutedEventArgs e)
+        {
+            vm.StartAddingCustomTextBox();
+        }
+
+        /// <summary>
         /// Aborts the adding action.
         /// </summary>
         /// <param name="sender"></param>

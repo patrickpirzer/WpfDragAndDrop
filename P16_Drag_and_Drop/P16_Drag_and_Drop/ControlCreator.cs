@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using P16_CustomControlLibrary;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -36,6 +32,11 @@ namespace P16_Drag_and_Drop
             else if (element.GetType() == typeof(TextBox))
             {
                 newControl = new TextBox();
+                newControl.GetType().GetProperty("Width").SetValue(newControl, 50);
+            }
+            else if (element.GetType() == typeof(CustomTextBox))
+            {
+                newControl = new CustomTextBox();
                 newControl.GetType().GetProperty("Width").SetValue(newControl, 50);
             }
 

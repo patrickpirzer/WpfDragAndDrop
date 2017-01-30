@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P16_Drag_and_Drop"
+        xmlns:customcontrols="clr-namespace:P16_CustomControlLibrary;assembly=P16_CustomControlLibrary"
         mc:Ignorable="d"
         Title="CreateAndDragControls"
         Height="350"
@@ -23,6 +24,7 @@
                    Background="Azure">
             <Button x:Name="btn_label" Margin="5" Click="btn_label_Click">Beschriftungsfeld</Button>
             <Button x:Name="btn_textbox" Margin="5" Click="btn_textbox_Click">Textfeld</Button>
+            <Button x:Name="btn_customtextbox" Margin="5" Click="btn_customtextbox_Click">CustomTextBox</Button>
             <Button x:Name="btn_abort" Margin="5" Click="btn_abort_Click">Abbrechen</Button>
         </WrapPanel>
 

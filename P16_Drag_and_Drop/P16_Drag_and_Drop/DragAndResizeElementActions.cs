@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using P16_Common;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -192,7 +189,7 @@ namespace P16_Drag_and_Drop
         {
             // Dragging is finished and the default mouse cursor restored.
             dragInProgress = false;
-            designerwindow.Cursor = defaultCursor;
+            CommonMethods.DisplayCursor(designerwindow, defaultCursor);
 
             // Gets the actual position of the control and recalculates the coordinates.
             FrameworkElement movingObject = (FrameworkElement)sender;
@@ -226,7 +223,7 @@ namespace P16_Drag_and_Drop
         {
             // Dragging is finished and the default mouse cursor restored.
             dragInProgress = false;
-            designerwindow.Cursor = defaultCursor;
+            CommonMethods.DisplayCursor(designerwindow, defaultCursor);
         }
 
         /// <summary>
@@ -309,15 +306,19 @@ namespace P16_Drag_and_Drop
             }
 
             // Displays the desired cursor.
-            //if (designerwindow.Cursor != desiredCursor)
-            //{
-            //    designerwindow.Cursor = desiredCursor;
-            //}
-            if (element.GetType().GetProperty("Cursor") != null &&
-                (Cursor)element.GetType().GetProperty("Cursor").GetValue(element) != desiredCursor)
+            if (designerwindow.Cursor != desiredCursor)
             {
-                element.GetType().GetProperty("Cursor").SetValue(element, desiredCursor);
+                CommonMethods.DisplayCursor(designerwindow, desiredCursor);
             }
+
+            //// Especially in case of TextBox (and other controls) this code displays the desired cursor.
+            //if (element.GetType().GetProperty("Cursor") != null &&
+            //    (Cursor)element.GetType().GetProperty("Cursor").GetValue(element) != desiredCursor)
+            //{
+            //    element.GetType().GetProperty("Cursor").SetValue(element, desiredCursor);
+            //    // Needed for displaying the desired cursor when the mouse is over the center of the CustomTextBox p.e.
+            //    Mouse.OverrideCursor = desiredCursor;
+            //}
         }
 
     }
